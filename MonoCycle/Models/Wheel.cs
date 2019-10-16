@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 
 namespace MonoCycle.Models
 {
@@ -12,11 +13,12 @@ namespace MonoCycle.Models
         public Direction Direction { get; set; }
 
         double wheelLength;
+        private Timer _timer;
 
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _timer?.Dispose();
         }
     }
 }
