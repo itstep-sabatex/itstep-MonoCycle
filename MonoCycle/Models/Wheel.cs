@@ -12,22 +12,32 @@ namespace MonoCycle.Models
         public double WheelLength => wheelLength;
         public Direction Direction { get; set; }
 
-        double wheelLength;
-        double diameter;
+        double wheelLength,diameter, v1;
         private Timer _timer;
+        long t1;
+        readonly object _locker = new object();
+
 
         private Wheel(double diametr)
         {
             this.diameter = diametr;
             wheelLength = diametr * Math.PI;
-            //t1 = 0;
-            //v1 = 0;
+            t1 = 0;
+            v1 = 0;
             _timer = new Timer(20);
-            //_timer.Elapsed += OnElapsed;
+            _timer.Elapsed += OnElapsed;
             _timer.AutoReset = true;
             _timer.Enabled = true;
 
         }
+
+        private void OnElapsed(object sender, ElapsedEventArgs e)
+        {
+            lock (_locker)
+            {
+            }
+        }
+
 
         /// <summary>
         /// 
